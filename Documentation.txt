@@ -1,0 +1,128 @@
+### Submission & Repository Links ###
+- Github Repository URL: https://github.com/tanori-rider/application-request-flow
+- Live Published Site: https://tanori-rider.github.io/application-request-flow/
+
+----------------------------------------------------------------------
+
+### Fictional Test Dataset & GET Query String Verification
+
+1. Contact Full Name (contact_name): Elena Rostova
+2. Organization Name (organization): Sunnyslope Cooling Center
+3. Contact Email (email): elena@sunnyslopecenter.org
+4. Contact Phone (phone): 602-555-0199
+5. Site Address (site_address): 8421 N Central Ave
+6. Phoenix ZIP Code (zip_code): 85012
+7. Service Needed (service_type): supplies
+8. Daily Count (daily_count): 150
+9. Request Date (request_date): 2026-11-25
+10. Logistics Notes (site_notes): Deliver to North Gate loading dock.
+11. Program Updates Checkbox (updates): yes
+
+Submitted URL (GET Query Parameter String):
+index.html?contact_name=Elena+Rostova&organization=Sunnyslope+Cooling+Center&email=elena%40sunnyslopecenter.org&phone=602-555-0199&site_address=8421+N+Central+Ave&zip_code=85012&service_type=supplies&daily_count=150&request_date=2026-11-25&site_notes=Deliver+to+North+Gate+loading+dock.&updates=yes
+
+----------------------------------------------------------------------
+
+### Form Control State Matrix
+
+# Default State
+CSS Selectors: input, select, textarea
+Visual Indicators: 2px solid gray border, white background, 1.6 line height
+Accessibility Role: Baseline state for form controls prior to user interaction.
+
+# Focus State
+CSS Selectors: :focus-visible
+Visual Indicators: 0.25rem gold outline, 0.2rem offset, maroon drop shadow
+Accessibility Role: Satisfies WCAG 2.4.7 & 2.4.13 for high-contrast keyboard navigation.
+
+# Required State
+CSS Selectors: input[required], select[required]
+Visual Indicators: 0.35rem thick left border accent + visible (required) label text
+Accessibility Role: Visually signals the mandatory fields before user entry.
+
+# Valid State
+CSS Selectors: :user-valid
+Visual Indicators: Green border + light green background tint
+Accessibility Role: Provides positive feedback after complete valid entry.
+
+# Invalid State
+CSS Selectors: :user-invalid
+Visual Indicators: Red border + light red background tint
+Accessibility Role: Highlights syntax errors upon field blur after user interaction.
+
+# Disabled State
+CSS Selectors: button:disabled, input:disabled
+Visual Indicators: 55% opacity, cursor: not-allowed, gray border
+Accessibility Role: Clearly indicates non-interactive or unavailable actions.
+
+# Server Error
+CSS Selectors: .error-summary, .field-error
+Visual Indicators: 0.4rem thick red left border, error summary banner, preserved value (2026-11-25)
+Accessibility Role: Models server business-logic failure (scheduling conflict) with actionable recovery links.
+
+----------------------------------------------------------------------
+
+### Accessibility, Keyboard, & Viewport Verification Records
+
+# KEYBOARD TABBING SEQUENCE (Focus Ring: 0.25rem Gold Outline)
+1. #contact_name (Textbox) -> Focuses 1st field; accepts full name.
+2. #organization (Textbox) -> Advances cleanly; accepts site name.
+3. #email (Textbox) -> Focuses email field; validates email format.
+4. #phone (Textbox) -> Focuses phone field; reads format helper via aria-describedby.
+5. #site_address (Textbox) -> Accepts street address.
+6. #zip_code (Combobox) -> Arrow keys navigate dropdown options.
+7. #service_supplies (Radio) -> Arrow keys navigate radio group options.
+8. #daily_count (Spinbutton) -> Arrow keys step values by 5 (min 5, max 500).
+9. #request_date (Date) -> Space/Enter opens date picker (min: 2026-11-25).
+10. #site_notes (Textarea) -> Multiline input (300 char max); Tab exits cleanly.
+11. #updates (Checkbox) -> Space key toggles check state.
+12. button[type="submit"] -> Enter or Space key submits form.
+
+----------------------------------------------------------------------
+
+# ACCESSIBILITY TREE AUDIT (Chrome DevTools Panel)
+- #contact_name -> Role: textbox | Name: "Contact full name (required)"
+- #organization -> Role: textbox | Name: "Organization or site name (required)"
+- #email -> Role: textbox | Name: "Contact email address (required)" | Desc: "Used for instant automated request confirmation..."
+- #phone -> Role: textbox | Name: "Contact phone number (optional backup)" | Desc: "Format: 602-555-0199..."
+- [name="service_type"] -> Role: radiogroup | Name: "Primary service needed (required)"
+- #daily_count -> Role: spinbutton | Name: "Estimated daily people served (required)" | Desc: "Enter estimated daily volume from 5 to 500..."
+- #request_date -> Role: date | Name: "Requested delivery or visit date (required)" | Desc: "Select a weekday delivery date on or after..."
+- #site_notes -> Role: textbox | Name: "Specific site instructions & logistics notes (optional)" | Desc: "Provide gate codes, drop-off location details..."
+- #updates -> Role: checkbox | Name: "Send occasional OHS heat-relief program and weather advisory updates"
+- button[type="submit"] -> Role: button | Name: "Submit Community Request"
+
+----------------------------------------------------------------------
+
+# VIEWPORT & REFLOW MATRIX
+- 320px Mobile: PASS (Single-column CSS Grid layout; 44px+ touch targets; no horizontal scroll).
+- 768px Tablet: PASS (Clean field grid; 52rem container max-width).
+- 1280px Desktop: PASS (Reading measure restricted by --measure: 68ch).
+- 200% Browser Zoom: PASS (Reflows without text truncation or visual overlap).
+
+----------------------------------------------------------------------
+
+### Code Defense & Design Rationale
+
+Data Minimization Rationale:
+   - Email is marked mandatory because automated digital dispatch confirmations are required by OHS operations.
+   - Phone number is explicitly marked optional backup to respect user privacy while providing an optional secondary contact channel for delivery drivers.
+   - PII is limited to operational site lead contact details; sensitive client medical or financial records are excluded.
+
+Accessibility & Control Selection:
+   - All controls utilize native HTML form elements with explicit <label for="..."> associations.
+   - Helper instructions (#email-help, #phone-help, #count-help, #date-help, #notes-help) are programmatically linked to their inputs via aria-describedby so screen reader users hear constraints prior to entry.
+   - Focus indicators use high-contrast 0.25rem gold outlines (:focus-visible) meeting WCAG 2.4.7 and 2.4.13.
+
+Error Recovery & State Management:
+   - Native HTML attributes (required, type="email", min, max, step, maxlength) handle client-side validation.
+   - The F5 section models a static server-returned business-logic error (scheduling conflict for ZIP 85012 on 2026-11-25), featuring a top role="alert" error summary box with in-page anchor links and inline field styling (aria-invalid="true") preserving the rejected input value.
+
+----------------------------------------------------------------------
+
+### AI Usage Disclosure Statement
+
+- AI tools were used for debugging during development only.
+- All HTML in index.html and field-inventory-template.html was manually created, reviewed, and validated.
+- All CSS rules in styles.css were manually tested for accessibility.
+- All form submission tests using the fictional dataset were completed manually.
