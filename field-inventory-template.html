@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>F2 · Task and Data Plan — OHS Heat Relief Request</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.5;
+        max-width: 85rem;
+        margin: auto;
+        padding: 1.5rem;
+        color: #191919;
+      }
+      h1 {
+        color: #8c1d40;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1rem;
+      }
+      th,
+      td {
+        padding: 0.75rem;
+        border: 1px solid #747474;
+        text-align: left;
+        vertical-align: top;
+      }
+      th {
+        background: #f1f1f1;
+        color: #191919;
+      }
+      code {
+        background: #f4f4f4;
+        padding: 0.15rem 0.3rem;
+        border-radius: 3px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>F2 · Task and Data Plan</h1>
+    <p>
+      Field Inventory for the City of Phoenix OHS Community Heat Relief &amp;
+      Resource Request Flow.
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Visible label / question</th>
+          <th>Why necessary now?</th>
+          <th>Required?</th>
+          <th>Native control/type</th>
+          <th>Submitted name/value</th>
+          <th>Autocomplete/inputmode</th>
+          <th>Constraint/instruction</th>
+          <th>Sensitivity and minimization decision</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Contact full name (required)</td>
+          <td>
+            Identifies the site lead responsible for receiving supply dispatch.
+          </td>
+          <td>Yes</td>
+          <td><code>&lt;input type="text"&gt;</code></td>
+          <td><code>contact_name</code></td>
+          <td><code>autocomplete="name"</code></td>
+          <td><code>required</code>, <code>maxlength="60"</code></td>
+          <td>Non-sensitive business contact data.</td>
+        </tr>
+        <tr>
+          <td>Organization or site name (required)</td>
+          <td>
+            Confirms the requesting shelter, cooling center, or partner
+            facility.
+          </td>
+          <td>Yes</td>
+          <td><code>&lt;input type="text"&gt;</code></td>
+          <td><code>organization</code></td>
+          <td><code>autocomplete="organization"</code></td>
+          <td><code>required</code>, <code>maxlength="80"</code></td>
+          <td>Public facility name only.</td>
+        </tr>
+        <tr>
+          <td>Contact email address (required)</td>
+          <td>
+            Primary communication channel for instant automated dispatch
+            confirmation.
+          </td>
+          <td>Yes</td>
+          <td><code>&lt;input type="email"&gt;</code></td>
+          <td><code>email</code></td>
+          <td>
+            <code>autocomplete="email"</code>, <code>inputmode="email"</code>
+          </td>
+          <td>
+            <code>required</code>, <code>aria-describedby="email-help"</code>
+          </td>
+          <td>
+            Email is the sole required contact channel for automated status
+            tracking.
+          </td>
+        </tr>
+        <tr>
+          <td>Contact phone number (optional backup)</td>
+          <td>
+            Optional secondary contact method for drivers coordinating onsite
+            arrival.
+          </td>
+          <td>No</td>
+          <td><code>&lt;input type="tel"&gt;</code></td>
+          <td><code>phone</code></td>
+          <td><code>autocomplete="tel"</code>, <code>inputmode="tel"</code></td>
+          <td>
+            Optional, <code>aria-describedby="phone-help"</code>,
+            <code>pattern="^\d{3}-\d{3}-\d{4}$"</code>
+          </td>
+          <td>Phone is optional to minimize data collection.</td>
+        </tr>
+        <tr>
+          <td>Site street address (required)</td>
+          <td>
+            Physical destination for supply drop-off or outreach navigation.
+          </td>
+          <td>Yes</td>
+          <td><code>&lt;input type="text"&gt;</code></td>
+          <td><code>site_address</code></td>
+          <td><code>autocomplete="street-address"</code></td>
+          <td><code>required</code>, <code>maxlength="120"</code></td>
+          <td>Facility address only.</td>
+        </tr>
+        <tr>
+          <td>Phoenix ZIP code (required)</td>
+          <td>
+            Routes dispatch teams to the correct City of Phoenix OHS service
+            zone.
+          </td>
+          <td>Yes</td>
+          <td><code>&lt;select&gt;</code> dropdown</td>
+          <td><code>zip_code</code></td>
+          <td><code>autocomplete="postal-code"</code></td>
+          <td><code>required</code>, restricted to 10 Phoenix ZIPs</td>
+          <td>Coarse geographic location.</td>
+        </tr>
+        <tr>
+          <td>Primary service needed (required)</td>
+          <td>
+            Determines resource allocation (Supplies vs. Onsite Navigation).
+          </td>
+          <td>Yes</td>
+          <td><code>&lt;input type="radio"&gt;</code> group</td>
+          <td><code>service_type</code> (supplies | navigation | both)</td>
+          <td><code>autocomplete="off"</code></td>
+          <td><code>required</code>, 3 choices, explicit id/for pairs</td>
+          <td>Single-choice selection prevents conflicting dispatch orders.</td>
+        </tr>
+        <tr>
+          <td>Estimated daily people served (required)</td>
+          <td>
+            Calculates required supply volume (water cases, cooling kits).
+          </td>
+          <td>Yes</td>
+          <td><code>&lt;input type="number"&gt;</code></td>
+          <td><code>daily_count</code></td>
+          <td><code>inputmode="numeric"</code></td>
+          <td>
+            <code>required</code>, <code>min="5"</code>, <code>max="500"</code>,
+            <code>step="5"</code>
+          </td>
+          <td>
+            Bounded range prevents bulk hoarding while accurately sizing
+            requests.
+          </td>
+        </tr>
+        <tr>
+          <td>Requested delivery or visit date (required)</td>
+          <td>Establishes arrival schedule for city outreach teams.</td>
+          <td>Yes</td>
+          <td><code>&lt;input type="date"&gt;</code></td>
+          <td><code>request_date</code></td>
+          <td><code>autocomplete="off"</code></td>
+          <td><code>required</code>, <code>min="2026-11-25"</code></td>
+          <td>
+            Logistics scheduling date only. Rejects past-date submissions.
+          </td>
+        </tr>
+        <tr>
+          <td>Specific site instructions &amp; logistics notes (optional)</td>
+          <td>
+            Captures gate codes, drop-off locations, or parking instructions.
+          </td>
+          <td>No</td>
+          <td><code>&lt;textarea&gt;</code></td>
+          <td><code>site_notes</code></td>
+          <td><code>autocomplete="off"</code></td>
+          <td>
+            Optional, <code>maxlength="300"</code>,
+            <code>aria-describedby="notes-help"</code>
+          </td>
+          <td>
+            Optional open field. Help text warns against sensitive client PII.
+          </td>
+        </tr>
+        <tr>
+          <td>Send occasional OHS heat-relief program updates</td>
+          <td>Opt-in preference for weather advisories and program news.</td>
+          <td>No</td>
+          <td><code>&lt;input type="checkbox"&gt;</code></td>
+          <td><code>updates</code> (value: <code>yes</code>)</td>
+          <td><code>autocomplete="off"</code></td>
+          <td>Optional opt-in checkbox</td>
+          <td>Minimal boolean flag. Defaults to unchecked.</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
