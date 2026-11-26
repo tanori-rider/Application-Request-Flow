@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>City of Phoenix OHS — Heat Relief Request</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="page-header">
+      <p class="eyebrow">City of Phoenix Office of Homeless Solutions</p>
+      <h1>Community Heat Relief &amp; Resource Request</h1>
+      <p class="lede">
+        Request emergency heat-relief supplies (water, cooling towels,
+        electrolyte packs) or schedule onsite navigation support for community
+        sites in Phoenix.
+      </p>
+    </header>
+
+    <main>
+      <section id="expectations">
+        <h2>F1 · Purpose and Expectations</h2>
+        <div class="expectation-card">
+          <p>
+            <strong>Target Audience:</strong> Shelter coordinators, community
+            site leads, and local outreach partners in Phoenix.
+          </p>
+          <p><strong>Estimated Completion Time:</strong> 3–5 minutes.</p>
+          <p>
+            <strong>What Happens Next:</strong> An OHS coordinator will review
+            your request within 1 business day and send a confirmation email
+            with dispatch details.
+          </p>
+          <p>
+            <strong>Field Conventions:</strong> Fields marked with
+            <em>(required)</em> must be completed prior to submission.
+          </p>
+          <p>
+            <strong>Privacy Statement &amp; Testing Boundary:</strong> This form
+            is a front-end prototype for course testing. Use fictional contact
+            and location details only. Do not submit real personal or
+            confidential information.
+          </p>
+        </div>
+      </section>
+
+      <form action="" method="get">
+        <fieldset>
+          <legend>Contact Information</legend>
+          <p class="help">
+            Provide primary site lead contact details for dispatch updates.
+          </p>
+
+          <div class="field">
+            <label for="contact_name">Contact full name (required)</label>
+            <p class="help" id="name-help">Maximum 60 characters.</p>
+            <input
+              id="contact_name"
+              name="contact_name"
+              type="text"
+              autocomplete="name"
+              maxlength="60"
+              aria-describedby="name-help"
+              required
+            />
+          </div>
+
+          <div class="field">
+            <label for="organization"
+              >Organization or site name (required)</label
+            >
+            <input
+              id="organization"
+              name="organization"
+              type="text"
+              autocomplete="organization"
+              maxlength="80"
+              required
+            />
+          </div>
+
+          <div class="field">
+            <label for="email">Contact email address (required)</label>
+            <p class="help" id="email-help">
+              Used for instant automated request confirmation and status
+              tracking.
+            </p>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              inputmode="email"
+              aria-describedby="email-help"
+              required
+            />
+          </div>
+
+          <div class="field">
+            <label for="phone">Contact phone number (optional backup)</label>
+            <p class="help" id="phone-help">
+              Format: 602-555-0199. Optional secondary contact for onsite
+              dispatch drivers.
+            </p>
+            <input
+              id="phone"
+              name="phone"
+              type="tel"
+              autocomplete="tel"
+              inputmode="tel"
+              aria-describedby="phone-help"
+              pattern="^\d{3}-\d{3}-\d{4}$"
+            />
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Site Location</legend>
+          <p class="help">
+            Specify the physical delivery or outreach destination in Phoenix.
+          </p>
+
+          <div class="field">
+            <label for="site_address">Site street address (required)</label>
+            <p class="help" id="address-help">Maximum 120 characters.</p>
+            <input
+              id="site_address"
+              name="site_address"
+              type="text"
+              autocomplete="street-address"
+              maxlength="120"
+              aria-describedby="address-help"
+              required
+            />
+          </div>
+
+          <div class="field">
+            <label for="zip_code">Phoenix ZIP code (required)</label>
+            <p class="help" id="zip-help">Select your Phoenix ZIP code.</p>
+            <select
+              id="zip_code"
+              name="zip_code"
+              autocomplete="postal-code"
+              aria-describedby="zip-help"
+              required
+            >
+              <option value="">Select a Phoenix ZIP code</option>
+              <option value="85003">85003 — Downtown Phoenix</option>
+              <option value="85004">85004 — Central City</option>
+              <option value="85006">85006 — Garfield / East Phoenix</option>
+              <option value="85007">85007 — Capitol / West Phoenix</option>
+              <option value="85008">85008 — Gateway / East Thomas</option>
+              <option value="85009">85009 — Encanto / West Phoenix</option>
+              <option value="85012">85012 — Midtown Phoenix</option>
+              <option value="85013">85013 — Uptown / Camelback</option>
+              <option value="85014">85014 — North Central</option>
+              <option value="85015">85015 — Alhambra</option>
+            </select>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Request Choices &amp; Schedule</legend>
+          <p class="help">
+            Select requested services, supply volume, and delivery schedule.
+          </p>
+
+          <div class="field">
+            <fieldset class="option-group">
+              <legend>Primary service needed (required)</legend>
+              <label class="choice" for="service_supplies">
+                <input
+                  type="radio"
+                  id="service_supplies"
+                  name="service_type"
+                  value="supplies"
+                  required
+                />
+                Heat-relief supplies delivery (bottled water, cooling towels,
+                electrolyte packets)
+              </label>
+              <label class="choice" for="service_navigation">
+                <input
+                  type="radio"
+                  id="service_navigation"
+                  name="service_type"
+                  value="navigation"
+                />
+                Onsite emergency navigation &amp; shelter outreach support
+              </label>
+              <label class="choice" for="service_both">
+                <input
+                  type="radio"
+                  id="service_both"
+                  name="service_type"
+                  value="both"
+                />
+                Both supplies delivery and onsite navigation support
+              </label>
+            </fieldset>
+          </div>
+
+          <div class="field">
+            <label for="daily_count"
+              >Estimated daily people served (required)</label
+            >
+            <p class="help" id="count-help">
+              Enter estimated daily volume from 5 to 500 in increments of 5.
+            </p>
+            <input
+              id="daily_count"
+              name="daily_count"
+              type="number"
+              min="5"
+              max="500"
+              step="5"
+              inputmode="numeric"
+              aria-describedby="count-help"
+              required
+            />
+          </div>
+
+          <div class="field">
+            <label for="request_date"
+              >Requested delivery or visit date (required)</label
+            >
+            <p class="help" id="date-help">
+              Select a weekday delivery date on or after November 25, 2026.
+            </p>
+            <input
+              id="request_date"
+              name="request_date"
+              type="date"
+              min="2026-11-25"
+              aria-describedby="date-help"
+              required
+            />
+          </div>
+
+          <div class="field">
+            <label for="site_notes"
+              >Specific site instructions &amp; logistics notes
+              (optional)</label
+            >
+            <p class="help" id="notes-help">
+              Provide gate codes, drop-off location details, or parking notes
+              (300 characters maximum). Do not include sensitive client
+              information.
+            </p>
+            <textarea
+              id="site_notes"
+              name="site_notes"
+              rows="4"
+              maxlength="300"
+              aria-describedby="notes-help"
+            ></textarea>
+          </div>
+
+          <div class="field">
+            <label class="choice" for="updates">
+              <input id="updates" name="updates" value="yes" type="checkbox" />
+              Send occasional OHS heat-relief program and weather advisory
+              updates
+            </label>
+          </div>
+        </fieldset>
+
+        <button type="submit">Submit Community Request</button>
+      </form>
+
+      <section id="states">
+        <h2>F5 · State and Recovery Specimen</h2>
+        <p>
+          This static specimen demonstrates state handling including default,
+          focus, required, valid, invalid, disabled controls, and a genuine
+          server-returned business-logic error.
+        </p>
+
+        <div
+          class="error-summary"
+          role="alert"
+          aria-labelledby="server-error-heading"
+        >
+          <h3 id="server-error-heading">
+            There is a problem with your submission
+          </h3>
+          <p>
+            The OHS server could not process the request due to a dispatch
+            scheduling conflict:
+          </p>
+          <ul>
+            <li>
+              <a href="#server-error-date"
+                >Requested Date: November 25, 2026 is fully booked for ZIP code
+                85012. Please select a date on or after November 28, 2026.</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div class="field field-error">
+          <label for="server-error-date"
+            >Requested delivery or visit date (required)</label
+          >
+          <p class="help" id="server-date-help">
+            Select a weekday delivery date on or after November 25, 2026.
+          </p>
+          <input
+            id="server-error-date"
+            name="request_date_specimen"
+            type="date"
+            value="2026-11-25"
+            aria-invalid="true"
+            aria-describedby="server-error-msg server-date-help"
+          />
+          <p id="server-error-msg" class="error-message">
+            <strong>Server Error:</strong> Delivery capacity for ZIP code 85012
+            is full on November 25, 2026. Choose an available date starting
+            November 28, 2026.
+          </p>
+        </div>
+
+        <h3>State matrix</h3>
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">State</th>
+              <th scope="col">Selector / trigger</th>
+              <th scope="col">Where shown</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Default</th>
+              <td><code>input, select, textarea</code></td>
+              <td>Empty contact name field on first load.</td>
+            </tr>
+            <tr>
+              <th scope="row">Focus</th>
+              <td><code>:focus-visible</code></td>
+              <td>Gold outline on any focused control.</td>
+            </tr>
+            <tr>
+              <th scope="row">Required</th>
+              <td><code>required</code> attribute</td>
+              <td>Empty required fields before submission.</td>
+            </tr>
+            <tr>
+              <th scope="row">Valid</th>
+              <td><code>:user-valid</code></td>
+              <td>Filled email field with valid address.</td>
+            </tr>
+            <tr>
+              <th scope="row">Invalid</th>
+              <td><code>:user-invalid</code></td>
+              <td>Malformed email or empty required field.</td>
+            </tr>
+            <tr>
+              <th scope="row">Server error</th>
+              <td>
+                <code>.field-error</code> + <code>aria-invalid="true"</code>
+              </td>
+              <td>Date field specimen above.</td>
+            </tr>
+            <tr>
+              <th scope="row">Disabled</th>
+              <td><code>button:disabled</code></td>
+              <td>Button below.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="field">
+          <button type="button" disabled>Dispatch Action Unavailable</button>
+        </div>
+      </section>
+
+      <section id="documentation">
+        <h2>F2 and F6 · Planning and Evidence</h2>
+        <p>
+          Review the accompanying planning documents, test records, and code
+          defense:
+        </p>
+        <ul>
+          <li>
+            <a href="field-inventory-template.html"
+              >F2 Field Inventory &amp; Data Plan</a
+            >
+          </li>
+          <li>
+            <a href="#states">F5 State Specimen &amp; Server Error Recovery</a>
+          </li>
+        </ul>
+
+        <h3>Repository and Published Links</h3>
+        <ul>
+          <li>
+            Repository: https://github.com/tanori-rider/application-request-flow
+          </li>
+          <li>
+            Published site:
+            https://tanori-rider.github.io/application-request-flow/
+          </li>
+        </ul>
+
+        <h3>Validation Evidence</h3>
+        <p>
+          HTML and CSS were checked with the W3C validators. No errors were
+          reported after fixes.
+        </p>
+
+        <h3>Screenshot Evidence</h3>
+        <ul>
+          <li>
+            <code>tests/screenshots/viewport-320.png</code>: 320px mobile
+            layout.
+          </li>
+          <li>
+            <code>tests/screenshots/viewport-768.png</code>: 768px tablet
+            layout.
+          </li>
+          <li>
+            <code>tests/screenshots/viewport-1280.png</code>: 1280px desktop
+            layout.
+          </li>
+          <li>
+            <code>tests/screenshots/zoom-200.png</code>: 200% zoom reflow.
+          </li>
+        </ul>
+
+        <h3>Code Defense</h3>
+        <p>
+          Email is required because it provides a written confirmation channel.
+          Phone is optional to minimize data collection while still allowing
+          urgent contact. ZIP is a select to prevent free-text errors. Radio
+          labels use matching <code>for</code> and <code>id</code> values.
+          <code>aria-describedby</code> connects help text to each control. The
+          date minimum is set to today to avoid past dates.
+        </p>
+
+        <h3>AI Usage Disclosure</h3>
+        <p>
+          AI tools were used for debugging during development only. I reviewed,
+          edited, and verified all final HTML, CSS, and content decisions for
+          this submission.
+        </p>
+      </section>
+    </main>
+  </body>
+</html>
